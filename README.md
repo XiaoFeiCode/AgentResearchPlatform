@@ -242,19 +242,20 @@ http://服务器IP/
 
 ## 运行示例
 
-本地已有一次完整运行示例，主题为：
+示例文件位于：
+
+```text
+docs/examples/
+```
+
+当前示例包含一次完整运行后生成的最终 HTML 报告，主题为：
 
 ```text
 给阿嫲的情书
 ```
 
-运行后生成了三类 Agent 报告和最终 HTML 报告：
+可直接打开：
 
 ```text
-data/report/insight/deep_search_report_给阿嫲的情书_20260530_191914.md
-data/report/media/deep_search_report_给阿嫲的情书_20260530_192149.md
-data/report/query/deep_search_report_给阿嫲的情书_20260530_192632.md
-data/report/final/final_report_智能舆情分析报告_20260530_154827.html
+docs/examples/final_report_智能舆情分析报告_20260530_154827.html
 ```
-
-示例摘要见：[docs/examples/sample-run.md](docs/examples/sample-run.md)
