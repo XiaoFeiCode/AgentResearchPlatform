@@ -277,8 +277,8 @@ daily_topics
 在服务器拉取代码：
 
 ```bash
-git clone https://github.com/XiaoFeiCode/sentiment_analysis_platform.git
-cd sentiment_analysis_platform
+git clone https://github.com/XiaoFeiCode/AgentResearchPlatform.git
+cd AgentResearchPlatform
 ```
 
 创建配置：
