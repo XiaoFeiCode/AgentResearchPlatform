@@ -1,0 +1,37 @@
+# Stage 1: Build Python dependencies
+FROM docker.m.daocloud.io/library/python:3.12-slim-bookworm AS builder
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc g++ make libffi-dev libssl-dev \
+    libpango1.0-dev libcairo2-dev libgdk-pixbuf-2.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --prefix=/install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+
+
+# Stage 2: Runtime
+FROM docker.m.daocloud.io/library/python:3.12-slim-bookworm
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpango-1.0-0 libpangocairo-1.0-0 libcairo2 libgdk-pixbuf-2.0-0 \
+    libgl1-mesa-glx libglib2.0-0 libsm6 libxext6 libxrender1 \
+    shared-mime-info curl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /install /usr/local
+
+WORKDIR /app
+
+COPY app/ ./app/
+COPY engines/ ./engines/
+COPY tools/ ./tools/
+COPY main.py ./
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 5000
+
+ENTRYPOINT ["docker-entrypoint.sh"]

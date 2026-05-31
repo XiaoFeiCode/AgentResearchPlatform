@@ -1,0 +1,36 @@
+# Version control
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Frontend (built in Docker)
+frontend/node_modules/
+
+# IDE
+.idea/
+.vscode/
+
+# Runtime data (mounted as volumes, not in image)
+logs/
+data/
+
+# Environment secrets
+.env
+
+# Tests and docs
+tests/
+备课.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
