@@ -1,6 +1,21 @@
 # 多源舆情智能分析系统
 
-基于 FastAPI、Vue3、LangGraph 和 MySQL 的多 Agent 舆情分析平台。系统输入一个舆情主题后，会并行调用多个分析引擎，汇总本地数据库、网络媒体和权威来源的信息，并生成结构化分析报告。
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![Vue](https://img.shields.io/badge/Vue3-Frontend-42b883)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1)
+![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-purple)
+
+基于 **FastAPI + Vue3 + LangGraph + MySQL** 的多 Agent 舆情分析平台。系统输入一个舆情主题后，会并行调用多个分析引擎，汇总本地数据库、网络媒体和权威来源的信息，并生成结构化分析报告。
+
+核心能力：
+
+- 私域舆情数据挖掘
+- 媒体传播路径分析
+- 权威信息核查
+- 多 Agent 协作讨论
+- HTML 舆情报告生成
 
 ## 架构图
 
