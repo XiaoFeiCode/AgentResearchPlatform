@@ -31,18 +31,41 @@
 ## 架构图
 
 ```mermaid
-flowchart LR
-  Frontend[Vue3 前端] --> Backend[FastAPI 后端]
-  Backend --> Harness[Agent Harness 编排层]
-  Harness --> Insight[InsightEngine 私域数据分析]
-  Harness --> Media[MediaEngine 媒体检索]
-  Harness --> Query[QueryEngine 权威核查]
-  Insight --> Forum[ForumEngine 协作讨论]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"nodeSpacing": 70, "rankSpacing": 80}}}%%
+flowchart TB
+  User([用户输入舆情主题])
+
+  subgraph Entry[前端与服务入口]
+    Frontend[Vue3 前端]
+    Backend[FastAPI 后端]
+  end
+
+  subgraph HarnessLayer[Agent Harness 编排层]
+    Harness[任务编排 / 事件通信 / 状态追踪]
+  end
+
+  subgraph Engines[多 Agent 并行研究]
+    Insight[InsightEngine<br/>私域数据分析]
+    Media[MediaEngine<br/>媒体检索]
+    Query[QueryEngine<br/>权威核查]
+  end
+
+  subgraph Output[协作研判与报告生成]
+    Forum[ForumEngine<br/>协作讨论]
+    Report[ReportEngine<br/>智能报告生成]
+  end
+
+  Spider[SentinelSpider 爬虫] --> MySQL[(MySQL 舆情数据库)]
+
+  User --> Frontend --> Backend --> Harness
+  Harness --> Insight
+  Harness --> Media
+  Harness --> Query
+  MySQL --> Insight
+  Insight --> Forum
   Media --> Forum
   Query --> Forum
-  Forum --> Report[ReportEngine 报告生成]
-  Spider[SentinelSpider 爬虫] --> MySQL[(MySQL)]
-  MySQL --> Insight
+  Forum --> Report
 ```
 
 ## 运行前准备
