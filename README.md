@@ -2,6 +2,22 @@
 
 基于 FastAPI、Vue3、LangGraph 和 MySQL 的多 Agent 舆情分析平台。系统输入一个舆情主题后，会并行调用多个分析引擎，汇总本地数据库、网络媒体和权威来源的信息，并生成结构化分析报告。
 
+## 架构图
+
+```mermaid
+flowchart LR
+  Frontend[Vue3 前端] --> Backend[FastAPI 后端]
+  Backend --> Insight[InsightEngine 私域数据分析]
+  Backend --> Media[MediaEngine 媒体检索]
+  Backend --> Query[QueryEngine 权威核查]
+  Insight --> Forum[ForumEngine 协作讨论]
+  Media --> Forum
+  Query --> Forum
+  Forum --> Report[ReportEngine 报告生成]
+  Spider[SentinelSpider 爬虫] --> MySQL[(MySQL)]
+  MySQL --> Insight
+```
+
 ## 运行前准备
 
 本地开发环境：
